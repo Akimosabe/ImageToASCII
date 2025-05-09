@@ -59,30 +59,30 @@ def on_drop(event):
             ext = os.path.splitext(filepath)[1].lower()
             if ext in ['.png', '.jpg', '.jpeg', '.bmp']:
                 result_file = process_image(filepath)
-                print(f"ASCII-файл сохранён: {result_file}")
+                print(f"ASCII file saved: {result_file}")
             elif ext == '.txt':
                 result_file = process_ascii_file(filepath)
-                print(f"Изображение восстановлено: {result_file}")
+                print(f"Image restored: {result_file}")
             elif ext in ['.mp4', '.avi', '.mov', '.mkv', '.gif']:
                 result_file = process_video(filepath)
-                print(f"ASCII-видео сохранено: {result_file}")
+                print(f"ASCII video saved: {result_file}")
             else:
-                print("Неподдерживаемый формат файла.")
+                print("Unsupported file format.")
                 return
             os.startfile(os.path.dirname(result_file))
         except Exception as e:
-            print(f"Ошибка: {e}")
+            print(f"Error: {e}")
 
 def main():
     app = TkinterDnD.Tk()
-    app.title("Конвертер в ASCII")
+    app.title("ASCII Converter")
     app.geometry('650x300')
     app.configure(bg='#f0f8ff')
 
     frame = tk.Frame(app, bg='#d0ebff', relief="ridge", bd=4, highlightbackground="#3399ff", highlightthickness=1)
     frame.pack(padx=30, pady=40, fill='both', expand=True)
 
-    label_title = tk.Label(frame, text="Перетащи сюда файл для конвертации", font=("Segoe UI", 16, "bold"), bg='#d0ebff', fg='#003366')
+    label_title = tk.Label(frame, text="Drag a file here to convert", font=("Segoe UI", 16, "bold"), bg='#d0ebff', fg='#003366')
     label_title.pack(pady=(25, 12))
 
     label_formats = tk.Label(frame, text="*.jpg, *.png, *.txt, *.mp4, *.avi, *.gif", font=("Segoe UI", 10, "italic"), bg='#d0ebff', fg='#003366')
