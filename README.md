@@ -1,58 +1,53 @@
-## Intro
-This is a simple, light and optimized **image-to-ascii** and **ascii-to-image** converter. It now supports image and video.
+# ASCII Converter GUI
 
-## 1. Image to Ascii
-This conversion is implemented by mapping the intensity of pixel to characters with different shape.
-### Command option
-`-f | --file` is input image path.
+This project provides a drag-and-drop graphical interface (GUI) for converting media files to and from ASCII format.
 
-`-s | --scale` controls the output size.
+## ✨ Features
 
-`-a | --aspect` controls the aspect of height and width.
+* **Convert images** (.jpg, .png, .bmp) to ASCII text (.txt)
+* **Restore images** from ASCII text files (.txt → .png)
+* **Convert videos and gifs** (.mp4, .avi, .mov, .mkv, .gif) to ASCII-style animations
+* **Modern GUI** with styled drop zone and format hints
+* Supports `.gif` looped playback and improved frame rates
 
-`-w | --write-file` is the output ascii txt path.
+## 🖼 GUI Overview
 
-### Usage
-```
-# lazy style: the default output is ${img_file}.txt
-python img_to_ascii.py -f imgs/erke.jpg
+Just drag and drop a file onto the light blue box:
 
-# adjust sampling step, the output is larger if it is samller
-python img_to_ascii.py -f imgs/erke.jpg -s 2
+* Top label: "Drag file here to convert"
+* Supported formats shown in italic
 
-# complete style
-python img_to_ascii.py -f imgs/erke.jpg -s "auto" -w out.txt
-```
+## 📁 Output
 
-### Samples
-<p align="center">
-    <img src="imgs/kenan_screen.jpg", width="800px">
-</p>
+* ASCII text files: stored in `output_ascii/`
+* Restored images: stored in `restored_images/`
+* ASCII videos: stored in `ascii_videos/`
 
-<p align="center">
-    <img src="imgs/chijing_screen.jpg", width="800px">
-</p>
+## 🚀 How to Run
 
-### Notes
-You can adjust the font size of text editor for better view.
-
-## 2. Ascii to Image
-It calls the text drawing API of `PIL` to implement the rendering of ascii text to image.
-```
-python ascii_to_img.py -f imgs/kenan.txt -w imgs/kenan_ascii.jpg
+```bash
+python gui_app.py
 ```
 
-<p align="center">
-    <img src="imgs/kenan_ascii.jpg", width="500px">
-</p>
+Make sure all dependencies are installed (see below).
 
-## 3. Video conversion
+## 📦 Requirements
+
 ```
-python ascii_art.py -f videos/kenan.mp4 -s 1 -e 360 -w res/kenan.gif -p 10 --step=10 --scale=0.25 --sampling-step=6
+tkinterdnd2
+opencv-python
+Pillow
+imageio
+imageio[ffmpeg]  # optional but recommended for video support
+numpy
 ```
 
-More videos to see [BaiduYun](https://pan.baidu.com/s/1gYcRH_Tx9aiy73N4rqzxvw).
+Install all at once:
 
-<p align="center">
-    <img src="imgs/kenan.gif", width="500px">
-</p>
+```bash
+pip install tkinterdnd2 opencv-python Pillow imageio[ffmpeg] numpy
+```
+
+---
+
+Forked and enhanced with GUI and full media support.
