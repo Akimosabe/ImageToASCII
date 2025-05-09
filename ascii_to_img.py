@@ -41,11 +41,11 @@ def _convert_ascii_to_img(ascii_str, font_path='fonts/Menlo-Regular.ttf'):
 
     # make the background image based on the combination of font and lines
     pt2px = lambda pt: int(round(pt * 96.0 / 72))  # _convert points to pixels
-    max_width_line = max(lines, key=lambda s: font.getsize(s)[0])
+    max_width_line = max(lines, key=lambda s: font.getbbox(s)[2])
     # max height is adjusted down because it's too large visually for spacing
     test_string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    max_height = pt2px(font.getsize(test_string)[1])
-    max_width = pt2px(font.getsize(max_width_line)[0])
+    max_height = pt2px(font.getbbox(test_string)[3])
+    max_width = pt2px(font.getbbox(max_width_line)[2])
     height = max_height * len(lines)  # perfect or a little oversized
     width = int(round(max_width + 40))  # a little oversized
     image = PIL.Image.new(grayscale, (width, height), color=PIXEL_OFF)
